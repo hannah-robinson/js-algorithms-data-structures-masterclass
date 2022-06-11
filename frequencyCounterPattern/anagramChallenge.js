@@ -2,6 +2,7 @@
 
 // What about edge cases? Might there be spaces or capitalisations for example? No. Only lowercase letters of the alphabet.
 
+// My solution
 function validAnagram(string1, string2) {
   if (string1.length !== string2.length) {
     return false
@@ -22,6 +23,33 @@ function validAnagram(string1, string2) {
       return false
     }
   }
+  return true
+}
+// Alternative solution from instructor
+function validAnagramAlt(first, second) {
+  if (first.length !== second.length) {
+    return false
+  }
+
+  const lookup = {}
+
+  for (let i = 0; i < first.length; i++) {
+    let letter = first[i]
+    // if letter exists, increment, otherwise set to 1
+    lookup[letter] ? (lookup[letter] += 1) : (lookup[letter] = 1)
+  }
+  console.log(lookup)
+
+  for (let i = 0; i < second.length; i++) {
+    let letter = second[i]
+    // can't find letter or letter is zero then it's not an anagram
+    if (!lookup[letter]) {
+      return false
+    } else {
+      lookup[letter] -= 1
+    }
+  }
+
   return true
 }
 
